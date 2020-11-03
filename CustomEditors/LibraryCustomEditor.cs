@@ -69,4 +69,9 @@ namespace UtilsEditor {
 	public class ConstantLibraryCustomEditor : LibraryCustomEditor<string> {
 		protected override void CopyValue(SerializedProperty origin, SerializedProperty to) => to.stringValue = origin.stringValue;
 	}
+
+	[CustomEditor(typeof(NetworkPrefabsLibrary))]
+	public class NetworkPrefabsLibraryCustomEditor : LibraryCustomEditor<GameObject> {
+		protected override void CopyValue(SerializedProperty origin, SerializedProperty to) => to.objectReferenceValue = origin.objectReferenceValue;
+	}
 }
