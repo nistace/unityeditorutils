@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace UtilsEditor {
 	public abstract class LibraryCustomEditor<E> : Editor {
+		private string filter { get; set; } = string.Empty;
+
 		public override void OnInspectorGUI() {
 			var library = (Library<E>) target;
 			var itemsCount = Mathf.Min(serializedObject.FindProperty("_itemNames").arraySize, serializedObject.FindProperty("_items").arraySize);
@@ -13,9 +15,9 @@ namespace UtilsEditor {
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("_id"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("_defaultItem"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("_orderIndex"));
-			AddOtherFields();
-			GUILayout.Label("Items:");
+			filter = EditorGUILayout.TextField("FILTER ITEMS ", filter);
 			for (var i = 0; i < itemsCount; ++i) {
+				if (!string.IsNullOrEmpty(filter) && !serializedObject.FindProperty("_itemNames").GetArrayElementAtIndex(i).stringValue.ToLower().Contains(filter.ToLower())) continue;
 				GUILayout.BeginHorizontal();
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("_itemNames").GetArrayElementAtIndex(i), GUIContent.none);
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("_items").GetArrayElementAtIndex(i), GUIContent.none);
@@ -51,8 +53,6 @@ namespace UtilsEditor {
 		}
 
 		protected abstract void CopyValue(SerializedProperty origin, SerializedProperty to);
-
-		public virtual void AddOtherFields() { }
 	}
 
 	[CustomEditor(typeof(ColorLibrary))]
@@ -72,6 +72,11 @@ namespace UtilsEditor {
 
 	[CustomEditor(typeof(NetworkPrefabsLibrary))]
 	public class NetworkPrefabsLibraryCustomEditor : LibraryCustomEditor<GameObject> {
+		protected override void CopyValue(SerializedProperty origin, SerializedProperty to) => to.objectReferenceValue = origin.objectReferenceValue;
+	}
+
+	[CustomEditor(typeof(AudioClipLibrary))]
+	public class AudioClipLibraryCustomEditor : LibraryCustomEditor<AudioClip> {
 		protected override void CopyValue(SerializedProperty origin, SerializedProperty to) => to.objectReferenceValue = origin.objectReferenceValue;
 	}
 }
