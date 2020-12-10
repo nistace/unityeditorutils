@@ -1,7 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using Utils.Types;
 
-namespace MSGEditor {
+namespace UtilsEditor.Properties {
 	[CustomPropertyDrawer(typeof(Ratio))]
 	public class RatioCustomPropertyDrawer : PropertyDrawer {
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {

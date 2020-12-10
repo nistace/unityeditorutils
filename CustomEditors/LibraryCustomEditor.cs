@@ -1,7 +1,9 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using Utils.Libraries;
+using Utils.Libraries.Network;
 
-namespace UtilsEditor {
+namespace UtilsEditor.CustomEditors {
 	public abstract class LibraryCustomEditor<E> : Editor {
 		private string filter { get; set; } = string.Empty;
 

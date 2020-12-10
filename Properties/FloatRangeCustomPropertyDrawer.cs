@@ -1,7 +1,8 @@
-﻿﻿using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
+using Utils.Types;
 
-namespace MSGEditor {
+namespace UtilsEditor.Properties {
 	[CustomPropertyDrawer(typeof(FloatRange))]
 	public class FloatRangeCustomPropertyDrawer : PropertyDrawer {
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {

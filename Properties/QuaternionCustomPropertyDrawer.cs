@@ -1,7 +1,7 @@
 ﻿﻿using UnityEngine;
 using UnityEditor;
 
-namespace MSGEditor {
+namespace UtilsEditor.Properties {
 	[CustomPropertyDrawer(typeof(Quaternion))]
 	public class QuaternionCustomPropertyDrawer : PropertyDrawer {
 		private Vector3 euler       { get; set; }
