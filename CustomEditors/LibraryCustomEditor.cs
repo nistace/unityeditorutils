@@ -86,4 +86,9 @@ namespace UtilsEditor.CustomEditors {
 	public class AudioClipLibraryCustomEditor : LibraryCustomEditor<AudioClip> {
 		protected override void CopyValue(SerializedProperty origin, SerializedProperty to) => to.objectReferenceValue = origin.objectReferenceValue;
 	}
+
+	[CustomEditor(typeof(ParticlesLibrary))]
+	public class ParticlesLibraryCustomEditor : LibraryCustomEditor<ParticleSystem> {
+		protected override void CopyValue(SerializedProperty origin, SerializedProperty to) => to.objectReferenceValue = origin.objectReferenceValue;
+	}
 }
