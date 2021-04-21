@@ -1,7 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using Utils.Libraries;
-using Utils.Libraries.Network;
 
 namespace UtilsEditor.CustomEditors {
 	public abstract class LibraryCustomEditor<E> : Editor {
@@ -74,11 +73,6 @@ namespace UtilsEditor.CustomEditors {
 
 	[CustomEditor(typeof(CursorLibrary))]
 	public class CursorLibraryCustomEditor : LibraryCustomEditor<CursorType> {
-		protected override void CopyValue(SerializedProperty origin, SerializedProperty to) => to.objectReferenceValue = origin.objectReferenceValue;
-	}
-
-	[CustomEditor(typeof(NetworkPrefabsLibrary))]
-	public class NetworkPrefabsLibraryCustomEditor : LibraryCustomEditor<GameObject> {
 		protected override void CopyValue(SerializedProperty origin, SerializedProperty to) => to.objectReferenceValue = origin.objectReferenceValue;
 	}
 
